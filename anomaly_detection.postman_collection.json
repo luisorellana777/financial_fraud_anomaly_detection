@@ -1,0 +1,42 @@
+{
+	"info": {
+		"_postman_id": "8222a5ae-e79b-4cf1-b7a5-6b9fabbdb41c",
+		"name": "anomaly_detection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3581147"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/transaction/fraud",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"step\": 500,\n    \"type\": \"DEBIT\",\n    \"amount\": 18000000,\n    \"nameOrig\": \"C1231006815\",\n    \"oldbalanceOrg\": 170136,\n    \"newbalanceOrig\": 160296.36,\n    \"nameDest\": \"M1979787155\",\n    \"oldbalanceDest\": 0,\n    \"newbalanceDest\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/transaction/fraud",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transaction",
+						"fraud"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
