@@ -1,0 +1,13 @@
+server:
+  port: 8080
+  shutdown: graceful
+spring:
+  application:
+    name: anomaly-detection
+  profiles:
+    active: rest # rest command
+model:
+  url:
+    base: http://127.0.0.1
+    endpoint: /predict
+    port: 8081

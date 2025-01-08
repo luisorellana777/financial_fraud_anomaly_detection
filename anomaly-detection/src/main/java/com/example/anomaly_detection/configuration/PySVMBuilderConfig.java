@@ -15,6 +15,6 @@ public class PySVMBuilderConfig {
     @Bean(name = "pyCommandBase")
     public List<String> buildCommandBase(){
 
-        return new ArrayList<String>(Arrays.asList("python", "/Users/luisorellanaaltamirano/Documents/Machine_Learning/anomaly-detection/src/main/resources/model/load_model.py"));
+        return new ArrayList<String>(Arrays.asList("python", "/Users/luisorellanaaltamirano/Documents/Machine_Learning/anomaly-detection/src/main/resources/model/load_model_command_line.py"));
     }
 }

@@ -1,31 +1,36 @@
-package com.example.anomaly_detection.common;
+package com.example.anomaly_detection.predictor.impl;
 
+import com.example.anomaly_detection.common.ModelMapper;
+import com.example.anomaly_detection.model.Transaction;
+import com.example.anomaly_detection.predictor.ModelReaderService;
 import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@AllArgsConstructor
+@Profile("command")
 @Component
-public class ModelReader {
+@AllArgsConstructor
+public class ModelReaderCommandLineImpl implements ModelReaderService {
 
     private List<String> pyCommandBase;
 
-    public int getResult(List<String> values){
+    private ModelMapper modelMapper;
+
+    public int getResult(Transaction transaction){
+
+        List<String> inputMapped = modelMapper.map(transaction);
 
         try {
 
-            // Run the Python script
-            ProcessBuilder pb = new ProcessBuilder(Stream.concat(pyCommandBase.stream(), values.stream()).collect(Collectors.toList()));
+            ProcessBuilder pb = new ProcessBuilder(Stream.concat(pyCommandBase.stream(), inputMapped.stream()).collect(Collectors.toList()));
             Process process = pb.start();
 
-            // Read Python script output
             BufferedReader reader = new BufferedReader(
                     new InputStreamReader(process.getInputStream())
             );
