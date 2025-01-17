@@ -27,7 +27,7 @@ def transform_type(type):
             return 4
 
 def main():
-    with open("/Users/luisorellanaaltamirano/Documents/Machine_Learning/anomaly-detection/src/main/resources/model/svm_model.pkl", "rb") as f:
+    with open("/Users/luisorellanaaltamirano/Documents/Machine_Learning/anomaly-detection/src/main/resources/model/forest_best_model.pkl", "rb") as f:
         model = pickle.load(f)
 
     step = normalize(sys.argv[1], min_step, max_step)
