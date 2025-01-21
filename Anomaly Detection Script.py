@@ -41,9 +41,71 @@ df = df_original.copy()
 
 #DATA ANALISIS
 
+fraud_amount = df_original[df_original['isFraud'] == 1]['amount'].mean()
+non_fraud_amount = df_original[df_original['isFraud'] == 0]['amount'].mean()
+
+all_amount = [fraud_amount, non_fraud_amount]
+
+counts = df_original['isFraud'].value_counts()
+avg_amounts = df_original.groupby('isFraud')['amount'].mean()
+
+fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+
+# First subplot: Number of Transactions
+bars1 = axes[0].bar(
+  ['Non-Fraud', 'Fraud'],
+  counts,
+  color=['skyblue', 'orange'],
+  alpha=0.8,
+  edgecolor='black'
+)
+axes[0].set_title('Number of Transactions')
+axes[0].set_ylabel('Count')
+axes[0].grid(axis='y', linestyle='--', alpha=0.7)
+
+# Adding counts and percentages
+total_count = counts.sum()
+for bar, count in zip(bars1, counts):
+  yval = bar.get_height()
+  percentage = (count / total_count) * 100
+  axes[0].text(
+    bar.get_x() + bar.get_width() / 2,
+    yval,
+    f'({percentage:.1f}%)',
+    ha='center',
+    va='bottom'
+  )
+
+# Second subplot: Average Transaction Amount
+bars2 = axes[1].bar(
+  ['Non-Fraud', 'Fraud'],
+  avg_amounts,
+  color=['skyblue', 'orange'],
+  alpha=0.8,
+  edgecolor='black'
+)
+axes[1].set_title('Average Transaction Amount')
+axes[1].set_ylabel('Average Amount')
+axes[1].grid(axis='y', linestyle='--', alpha=0.7)
+
+# Adding average amounts
+for bar in bars2:
+  yval = bar.get_height()
+  axes[1].text(
+    bar.get_x() + bar.get_width() / 2,
+    yval,
+    f'{yval:.2f}',
+    ha='center',
+    va='bottom'
+  )
+
+plt.tight_layout()
+plt.show()
+
+###################
 counts = df_original['isFraud'].value_counts()
 plt.figure(figsize = (6,6))
-plt.pie(counts, labels = counts.index, autopct = "%1.1f%%", colors=['#F47F10', '#F41010', '#F47810', '#F4C010','#F4D510'], shadow = True,explode = (0, 0),textprops={'fontsize': 15})
+plt.pie(counts, labels = counts.index, autopct = "%1.1f%%", colors=['skyblue', 'orange', 'red', 'yellow', 'green'], shadow = True,explode = (0, 0),textprops={'fontsize': 15})
 plt.title('Count of each isFraud of transaction', fontweight = 'bold', fontsize = 18, fontfamily = 'times new roman')
 plt.show()
 
@@ -67,14 +129,14 @@ plt.show()
 #Global Type
 counts = df_original.groupby('type').count()['amount']
 plt.figure(figsize = (6,6))
-plt.pie(counts, labels = counts.index, autopct = "%1.1f%%", colors=['#F47F10', '#F41010', '#F47810', '#F4C010','#F4D510'], shadow = True,explode = (0.1, 0, 0, 0, 0),textprops={'fontsize': 15})
+plt.pie(counts, labels = counts.index, autopct = "%1.1f%%", colors=['skyblue', 'orange', 'red', 'yellow', 'green'], shadow = True,explode = (0.1, 0, 0, 0, 0),textprops={'fontsize': 15})
 plt.title('Count of each type of transaction', fontweight = 'bold', fontsize = 18, fontfamily = 'times new roman')
 plt.show()
 
 #Types which are fraud
 counts = df_original[(df_original['isFraud']==1)].groupby('type').count()['amount']
 plt.figure(figsize = (6,6))
-plt.pie(counts, labels = counts.index, autopct = "%1.1f%%", colors=['#F47F10', '#F41010', '#F47810', '#F4C010','#F4D510'], shadow = True,explode = (0, 0),textprops={'fontsize': 15})
+plt.pie(counts, labels = counts.index, autopct = "%1.1f%%", colors=['skyblue', 'orange', 'red', 'yellow', 'green'], shadow = True,explode = (0, 0),textprops={'fontsize': 15})
 plt.title('Count of each type of fraud transaction', fontweight = 'bold', fontsize = 18, fontfamily = 'times new roman')
 plt.show()
 
@@ -184,7 +246,7 @@ print(f"Classification Report of logistic regression\n {classification_lr}")
 class_weights = {0: 1, 1: 10}  # 0 for normal, 1 for anomalies
 
 # Fit the SVM classifier with class weights
-clf = svm.SVC(kernel="rbf", gamma="scale", C=50, class_weight=class_weights)
+clf = svm.SVC(kernel="rbf", gamma="scale", C=50)
 clf.fit(X_train, y_train)
 
 # Predict the labels (0 for normal, 1 for anomalous)
