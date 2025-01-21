@@ -5,7 +5,6 @@ import com.example.anomaly_detection.predictor.ModelAPIInitializer;
 import com.example.anomaly_detection.predictor.ModelReaderService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
