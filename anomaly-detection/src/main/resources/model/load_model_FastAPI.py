@@ -45,7 +45,7 @@ def predict(features: Features):
 
         # Make prediction
         prediction = model.predict(input_frame)
-        return prediction.tolist()
+        return prediction.tolist()[0]
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 #uvicorn load_model_FastAPI:app --reload --port 8081

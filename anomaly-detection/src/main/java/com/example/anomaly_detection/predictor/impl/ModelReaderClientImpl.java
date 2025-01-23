@@ -1,26 +1,25 @@
 package com.example.anomaly_detection.predictor.impl;
 
+import com.example.anomaly_detection.configuration.ModelRestConfig;
 import com.example.anomaly_detection.model.Transaction;
 import com.example.anomaly_detection.predictor.ModelAPIInitializer;
 import com.example.anomaly_detection.predictor.ModelReaderService;
 import jakarta.annotation.PostConstruct;
-import org.springframework.beans.factory.annotation.Value;
+import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Profile;
+import org.springframework.http.*;
 import org.springframework.stereotype.Component;
-import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
+import org.springframework.web.client.RestTemplate;
 
 @Profile("rest")
 @Component
+@AllArgsConstructor
 public class ModelReaderClientImpl implements ModelReaderService {
 
-    private final WebClient webClient;
-    private ModelAPIInitializer modelAPIInitializer;
+    private RestTemplate restTemplate;
 
-    public ModelReaderClientImpl(WebClient.Builder webClientBuilder, ModelAPIInitializer modelAPIInitializer, @Value("${model.url.base}") String base, @Value("${model.url.port}") String port, @Value("${model.url.endpoint}") String endpoint) {
-        this.webClient = webClientBuilder.baseUrl(base.concat(":").concat(port).concat(endpoint)).build();
-        this.modelAPIInitializer = modelAPIInitializer;
-    }
+    private ModelRestConfig.ModelURL modelURL;
+    private ModelAPIInitializer modelAPIInitializer;
 
     @PostConstruct
     public void initializeFastAPIPostConstruct() {
@@ -29,12 +28,16 @@ public class ModelReaderClientImpl implements ModelReaderService {
 
     public int getResult(Transaction transaction){
 
-        Mono<Integer> map = webClient.post()
-                .bodyValue(transaction)
-                .retrieve()
-                .bodyToMono(String.class)
-                .map(value -> Integer.parseInt(value.replace('[', ' ').replace(']', ' ').trim()));
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-Type", "application/json");
 
-        return map.block();
+        ResponseEntity<Integer> response = restTemplate.exchange(
+                modelURL.getBase().concat(":").concat(modelURL.getPort()).concat(modelURL.getEndpoint()),
+                HttpMethod.POST,
+                new HttpEntity<>(transaction, headers),
+                Integer.class
+        );
+        return response.getBody();
+
     }
 }

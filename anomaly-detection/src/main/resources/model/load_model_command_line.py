@@ -1,4 +1,4 @@
-import pickle
+import joblib
 import sys
 import json
 import pandas as pd
@@ -27,8 +27,7 @@ def transform_type(type):
             return 4
 
 def main():
-    with open("/Users/luisorellanaaltamirano/Documents/Machine_Learning/anomaly-detection/src/main/resources/model/forest_best_model.pkl", "rb") as f:
-        model = pickle.load(f)
+    model = joblib.load("/Users/luisorellanaaltamirano/Documents/Machine_Learning/anomaly-detection/src/main/resources/model/forest_best_model.pkl")
 
     step = normalize(sys.argv[1], min_step, max_step)
     type = normalize(transform_type(sys.argv[2]), min_type, max_type)
