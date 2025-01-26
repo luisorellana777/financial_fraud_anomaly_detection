@@ -2,6 +2,7 @@
 This project aims to detect fraudulent financial transactions using machine learning and anomaly detection techniques. The repository includes data preprocessing process, exploratory data analysis (EDA), and implementations of algorithms to identify anomalies in transaction patterns.
 
 Table of Contents
+- Spring Boot Service Execution
 - Features
 - Dataset
 - Usage
@@ -10,6 +11,29 @@ Table of Contents
 - Project Structure
 - Contributing
 - Contact
+
+## Spring Boot Service Execution
+
+### Docker Execution
+Just use the following command:
+
+```bash
+docker-compose up
+```
+
+This command has to be executed in the same folder where the [Dockerfile](https://github.com/luisorellana777/financial_fraud_anomaly_detection/blob/master/anomaly-detection/Dockerfile) is.
+
+
+### Local Base Code Execution
+The following environment variable has to be created before running the service:
+
+```bash
+MODEL_PATH=<PATH WHERE MODEL FOLDER IS>
+```
+
+Where "MODEL FOLDER" is the following [link](https://github.com/luisorellana777/financial_fraud_anomaly_detection/tree/master/anomaly-detection/src/main/resources/model) to the folder.
+This docker-compose will pull [this docker image](https://hub.docker.com/repository/docker/luisorellanaa/anomaly-detection/general) from my personal docker hub.
+
 
 
 ## Features
