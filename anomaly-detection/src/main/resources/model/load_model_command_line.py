@@ -14,24 +14,23 @@ def normalize(value, min, max):
     return (float(value) - min) / (max - min);
 
 def transform_type(type):
-    match type:
-        case 'CASH_IN':
-            return 0
-        case 'CASH_OUT':
-            return 1
-        case 'DEBIT':
-            return 2
-        case 'PAYMENT':
-            return 3
-        case 'TRANSFER':
-            return 4
+    if type == 'CASH_IN':
+        return 0
+    elif type == 'CASH_OUT':
+        return 1
+    elif type == 'DEBIT':
+        return 2
+    elif type == 'PAYMENT':
+        return 3
+    elif type == 'TRANSFER':
+        return 4
 
 def main():
-    model = joblib.load("/Users/luisorellanaaltamirano/Documents/Machine_Learning/anomaly-detection/src/main/resources/model/forest_best_model.pkl")
+    model = joblib.load(sys.argv[1]+"forest_best_model.pkl")
 
-    step = normalize(sys.argv[1], min_step, max_step)
-    type = normalize(transform_type(sys.argv[2]), min_type, max_type)
-    amount = normalize(sys.argv[3], min_amount, max_amount)
+    step = normalize(sys.argv[2], min_step, max_step)
+    type = normalize(transform_type(sys.argv[3]), min_type, max_type)
+    amount = normalize(sys.argv[4], min_amount, max_amount)
 
     input_frame = pd.DataFrame({'step':[step], 'type':[type], 'amount':[amount]})
     predictions = model.predict(input_frame).tolist()

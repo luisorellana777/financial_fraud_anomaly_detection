@@ -7,6 +7,7 @@ spring:
   profiles:
     active: rest # rest command
 model:
+  path: ${MODEL_PATH:default}
   url:
     base: http://127.0.0.1
     endpoint: /predict

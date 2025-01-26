@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  anomaly-detection:
+    image: luisorellanaa/anomaly-detection
+    ports:
+      - "8080:8080"
+    restart: always
+    environment:
+      MODEL_PATH: "/app/resources/model/"

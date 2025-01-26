@@ -1,4 +1,5 @@
 import joblib
+import os
 import pandas as pd
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
@@ -14,21 +15,21 @@ def normalize(value, min, max):
     return (float(value) - min) / (max - min);
 
 def transform_type(type):
-    match type:
-        case 'CASH_IN':
-            return 0
-        case 'CASH_OUT':
-            return 1
-        case 'DEBIT':
-            return 2
-        case 'PAYMENT':
-            return 3
-        case 'TRANSFER':
-            return 4
+    if type == 'CASH_IN':
+        return 0
+    elif type == 'CASH_OUT':
+        return 1
+    elif type == 'DEBIT':
+        return 2
+    elif type == 'PAYMENT':
+        return 3
+    elif type == 'TRANSFER':
+        return 4
 
 app = FastAPI()
 
-model = joblib.load("/Users/luisorellanaaltamirano/Documents/Machine_Learning/anomaly-detection/src/main/resources/model/forest_best_model.pkl")
+model_path = os.getenv("MODEL_PATH")
+model = joblib.load(model_path+"forest_best_model.pkl")
 
 class Features(BaseModel):
     step: float

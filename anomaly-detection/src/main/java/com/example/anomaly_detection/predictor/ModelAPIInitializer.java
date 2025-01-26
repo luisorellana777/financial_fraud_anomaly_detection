@@ -1,6 +1,7 @@
 package com.example.anomaly_detection.predictor;
 
 import jakarta.annotation.PreDestroy;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
@@ -17,6 +18,9 @@ public class ModelAPIInitializer {
 
     private String pid1;
     private String pid2;
+    @Value("${model.path}")
+    private String modelPath;
+
     @Async
     public void runModelCommandBase(){
 
@@ -25,7 +29,8 @@ public class ModelAPIInitializer {
             // Define the command to start uvicorn
             String[] command = {
                     "/bin/bash",
-                    "/Users/luisorellanaaltamirano/Documents/Machine_Learning/anomaly-detection/src/main/resources/model/run_fastapi_service.sh"
+                    modelPath.concat("run_fastapi_service.sh"),
+                    modelPath
             };
 
             ProcessBuilder processBuilder = new ProcessBuilder(command);

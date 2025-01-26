@@ -1,5 +1,6 @@
 package com.example.anomaly_detection.configuration;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -11,10 +12,13 @@ import java.util.List;
 @Configuration
 public class PySVMBuilderConfig {
 
+    @Value("${model.path}")
+    private String modelPath;
+
     @Scope(value = "prototype")
     @Bean(name = "pyCommandBase")
     public List<String> buildCommandBase(){
 
-        return new ArrayList<String>(Arrays.asList("python", "/Users/luisorellanaaltamirano/Documents/Machine_Learning/anomaly-detection/src/main/resources/model/load_model_command_line.py"));
+        return new ArrayList<String>(Arrays.asList("python", modelPath.concat("load_model_command_line.py"), modelPath));
     }
 }
