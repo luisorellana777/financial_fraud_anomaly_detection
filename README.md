@@ -21,7 +21,7 @@ Just use the following command:
 docker-compose up
 ```
 
-This command has to be executed in the same folder where the [Dockerfile](https://github.com/luisorellana777/financial_fraud_anomaly_detection/blob/master/anomaly-detection/Dockerfile) is.
+This command has to be executed in the same folder where the [Docker Compose](https://github.com/luisorellana777/financial_fraud_anomaly_detection/blob/master/anomaly-detection/docker-compose.yml) is.
 
 
 ### Local Base Code Execution
