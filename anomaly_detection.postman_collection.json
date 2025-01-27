@@ -7,36 +7,632 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost:8080/transaction/fraud",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"step\": 500,\n    \"type\": \"DEBIT\",\n    \"amount\": 18000000,\n    \"nameOrig\": \"C1231006815\",\n    \"oldbalanceOrg\": 170136,\n    \"newbalanceOrig\": 160296.36,\n    \"nameDest\": \"M1979787155\",\n    \"oldbalanceDest\": 0,\n    \"newbalanceDest\": 0\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "Non Frauds",
+			"item": [
+				{
+					"name": "Cash Out",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Transaction ID",
+									"value": "T2000\t",
+									"type": "text"
+								},
+								{
+									"key": "step",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "CASH_OUT",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "30000",
+									"type": "text"
+								},
+								{
+									"key": "Timestamp",
+									"value": "2023-05-03 06:47:04",
+									"type": "text"
+								},
+								{
+									"key": "Account ID",
+									"value": "G445",
+									"type": "text"
+								},
+								{
+									"key": "Customer ID",
+									"value": "R1421",
+									"type": "text"
+								},
+								{
+									"key": "Currency",
+									"value": "TZS",
+									"type": "text"
+								},
+								{
+									"key": "Balance Before Transaction",
+									"value": "50000",
+									"type": "text"
+								},
+								{
+									"key": "Balance After Transaction",
+									"value": "20000",
+									"type": "text"
+								},
+								{
+									"key": "Transaction Location",
+									"value": "Rungwa",
+									"type": "text"
+								},
+								{
+									"key": "Channel",
+									"value": "ATM",
+									"type": "text"
+								},
+								{
+									"key": "Transaction Status",
+									"value": "completed",
+									"type": "text"
+								},
+								{
+									"key": "Merchant ID",
+									"value": "B1335",
+									"type": "text"
+								},
+								{
+									"key": "Purpose/Category",
+									"value": "cash_out",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/transaction/fraud",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transaction",
+								"fraud"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/transaction/fraud",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"transaction",
-						"fraud"
-					]
+				{
+					"name": "Debit",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Transaction ID",
+									"value": "T1000\t",
+									"type": "text"
+								},
+								{
+									"key": "step",
+									"value": "200",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "DEBIT",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "180000",
+									"type": "text"
+								},
+								{
+									"key": "Timestamp",
+									"value": "2023-02-14 06:50:08",
+									"type": "text"
+								},
+								{
+									"key": "Account ID",
+									"value": "A901",
+									"type": "text"
+								},
+								{
+									"key": "Customer ID",
+									"value": "C7622",
+									"type": "text"
+								},
+								{
+									"key": "Currency",
+									"value": "TZS",
+									"type": "text"
+								},
+								{
+									"key": "Balance Before Transaction",
+									"value": "2351",
+									"type": "text"
+								},
+								{
+									"key": "Balance After Transaction",
+									"value": "1931",
+									"type": "text"
+								},
+								{
+									"key": "Transaction Location",
+									"value": "New York",
+									"type": "text"
+								},
+								{
+									"key": "Channel",
+									"value": "online_banking",
+									"type": "text"
+								},
+								{
+									"key": "Transaction Status",
+									"value": "pending",
+									"type": "text"
+								},
+								{
+									"key": "Merchant ID",
+									"value": "M8340",
+									"type": "text"
+								},
+								{
+									"key": "Purpose/Category",
+									"value": "rent",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/transaction/fraud",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transaction",
+								"fraud"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Payment",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Transaction ID",
+									"value": "T3000\t",
+									"type": "text"
+								},
+								{
+									"key": "step",
+									"value": "400",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "PAYMENT",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "1500000",
+									"type": "text"
+								},
+								{
+									"key": "Timestamp",
+									"value": "2023-02-23 01:34:06",
+									"type": "text"
+								},
+								{
+									"key": "Account ID",
+									"value": "R241",
+									"type": "text"
+								},
+								{
+									"key": "Customer ID",
+									"value": "W2124",
+									"type": "text"
+								},
+								{
+									"key": "Currency",
+									"value": "TZS",
+									"type": "text"
+								},
+								{
+									"key": "Balance Before Transaction",
+									"value": "2500000",
+									"type": "text"
+								},
+								{
+									"key": "Balance After Transaction",
+									"value": "1000000",
+									"type": "text"
+								},
+								{
+									"key": "Transaction Location",
+									"value": "Sikonge",
+									"type": "text"
+								},
+								{
+									"key": "Channel",
+									"value": "ATM",
+									"type": "text"
+								},
+								{
+									"key": "Transaction Status",
+									"value": "pending",
+									"type": "text"
+								},
+								{
+									"key": "Merchant ID",
+									"value": "C4351",
+									"type": "text"
+								},
+								{
+									"key": "Purpose/Category",
+									"value": "Car Payment",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/transaction/fraud",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transaction",
+								"fraud"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "Frauds",
+			"item": [
+				{
+					"name": "Cash Out",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Transaction ID",
+									"value": "T2000\t",
+									"type": "text"
+								},
+								{
+									"key": "step",
+									"value": "400",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "CASH_OUT",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "1500000",
+									"type": "text"
+								},
+								{
+									"key": "Timestamp",
+									"value": "2023-02-01 03:45:21",
+									"type": "text"
+								},
+								{
+									"key": "Account ID",
+									"value": "F345",
+									"type": "text"
+								},
+								{
+									"key": "Customer ID",
+									"value": "H3421",
+									"type": "text"
+								},
+								{
+									"key": "Currency",
+									"value": "TZS",
+									"type": "text"
+								},
+								{
+									"key": "Balance Before Transaction",
+									"value": "2000000",
+									"type": "text"
+								},
+								{
+									"key": "Balance After Transaction",
+									"value": "500000",
+									"type": "text"
+								},
+								{
+									"key": "Transaction Location",
+									"value": "Rungwa",
+									"type": "text"
+								},
+								{
+									"key": "Channel",
+									"value": "ATM",
+									"type": "text"
+								},
+								{
+									"key": "Transaction Status",
+									"value": "completed",
+									"type": "text"
+								},
+								{
+									"key": "Merchant ID",
+									"value": "A7335",
+									"type": "text"
+								},
+								{
+									"key": "Purpose/Category",
+									"value": "cash_out",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/transaction/fraud",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transaction",
+								"fraud"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Debit",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Transaction ID",
+									"value": "T1000\t",
+									"type": "text"
+								},
+								{
+									"key": "step",
+									"value": "400",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "DEBIT",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "1500000",
+									"type": "text"
+								},
+								{
+									"key": "Timestamp",
+									"value": "2023-02-14 06:50:08",
+									"type": "text"
+								},
+								{
+									"key": "Account ID",
+									"value": "A901",
+									"type": "text"
+								},
+								{
+									"key": "Customer ID",
+									"value": "C7622",
+									"type": "text"
+								},
+								{
+									"key": "Currency",
+									"value": "TZS",
+									"type": "text"
+								},
+								{
+									"key": "Balance Before Transaction",
+									"value": "2351",
+									"type": "text"
+								},
+								{
+									"key": "Balance After Transaction",
+									"value": "1931",
+									"type": "text"
+								},
+								{
+									"key": "Transaction Location",
+									"value": "New York",
+									"type": "text"
+								},
+								{
+									"key": "Channel",
+									"value": "online_banking",
+									"type": "text"
+								},
+								{
+									"key": "Transaction Status",
+									"value": "pending",
+									"type": "text"
+								},
+								{
+									"key": "Merchant ID",
+									"value": "M8340",
+									"type": "text"
+								},
+								{
+									"key": "Purpose/Category",
+									"value": "rent",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/transaction/fraud",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transaction",
+								"fraud"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Payment",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Transaction ID",
+									"value": "T3000\t",
+									"type": "text"
+								},
+								{
+									"key": "step",
+									"value": "700",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "PAYMENT",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "2000000",
+									"type": "text"
+								},
+								{
+									"key": "Timestamp",
+									"value": "2023-08-30 09:21:22",
+									"type": "text"
+								},
+								{
+									"key": "Account ID",
+									"value": "B590",
+									"type": "text"
+								},
+								{
+									"key": "Customer ID",
+									"value": "F8265",
+									"type": "text"
+								},
+								{
+									"key": "Currency",
+									"value": "TZS",
+									"type": "text"
+								},
+								{
+									"key": "Balance Before Transaction",
+									"value": "2500000",
+									"type": "text"
+								},
+								{
+									"key": "Balance After Transaction",
+									"value": "500000",
+									"type": "text"
+								},
+								{
+									"key": "Transaction Location",
+									"value": "Sikonge",
+									"type": "text"
+								},
+								{
+									"key": "Channel",
+									"value": "online_banking",
+									"type": "text"
+								},
+								{
+									"key": "Transaction Status",
+									"value": "pending",
+									"type": "text"
+								},
+								{
+									"key": "Merchant ID",
+									"value": "Q7600",
+									"type": "text"
+								},
+								{
+									"key": "Purpose/Category",
+									"value": "Mortgage Payment",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/transaction/fraud",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transaction",
+								"fraud"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
