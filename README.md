@@ -74,18 +74,19 @@ Run in [Spring Boot service folder](https://github.com/luisorellana777/financial
 ## Models and Techniques
 This project uses the following algorithms for anomaly detection:
 
-Logistic Regression: Detects anomalies by hyperplane of separation.
-Support Vector Machine: Identifies patterns using support vector methods.
+- Logistic Regression: Detects anomalies by hyperplane of separation.
+- Support Vector Machine: Identifies patterns using support vector methods.
+- Decision Tree Classifier: Uses nodes to validate and detect anomalyes.
 
 These methods are suitable for imbalanced datasets and require explicit labels for fraud cases.
 
 The results of the project are summarized below:
 
-Performance Metrics:
+Performance Metrics for Macro avg:
 
-- Precision: 79%
-- Recall: 60%
-- F1-Score: 62%
+- Precision: 90%
+- Recall: 68%
+- F1-Score: 75%
 
 Find detailed results in [this directory](https://github.com/luisorellana777/financial_fraud_anomaly_detection/blob/master/Anomaly%20Detection.ipynb).
 
